@@ -9,5 +9,4 @@
 <!ATTLIST preco moeda (BRL | USD) "BRL">
 <!ELEMENT calorias (#PCDATA)>
 <!ELEMENT tempo (#PCDATA)>
-
 <!ENTITY reais "R$">
