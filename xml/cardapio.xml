@@ -8,7 +8,7 @@
             <ingrediente>Arroz</ingrediente>
             <ingrediente>Feijao</ingrediente>
         </ingredientes>
-        <preco>10R$</preco> 
+        <preco moeda="BRL">10&reais;</preco> 
         <calorias>300 kcal</calorias> 
         <tempo>10 min</tempo>
     </prato>
@@ -22,7 +22,7 @@
             <ingrediente>Pimenta</ingrediente>
             <ingrediente>Azeite</ingrediente>
         </ingredientes>
-        <preco>15R$</preco>
+        <preco moeda="BRL">15&reais;</preco>
         <calorias>250 kcal</calorias>
         <tempo>15 min</tempo>
     </prato>
@@ -36,7 +36,7 @@
             <ingrediente>Queijo parmesão</ingrediente>
             <ingrediente>Molho Caesar</ingrediente>
         </ingredientes>
-        <preco>12R$</preco>
+        <preco moeda="BRL">12&reais;</preco>
         <calorias>180 kcal</calorias>
         <tempo>10 min</tempo>
     </prato>
@@ -50,7 +50,7 @@
             <ingrediente>Sal</ingrediente>
             <ingrediente>Pimenta</ingrediente>
         </ingredientes>
-        <preco>20R$</preco>
+        <preco moeda="BRL">20&reais;</preco>
         <calorias>300 kcal</calorias>
         <tempo>20 min</tempo>
     </prato>
@@ -64,7 +64,7 @@
             <ingrediente>Queijo mozzarella</ingrediente>
             <ingrediente>Manjericão</ingrediente>
         </ingredientes>
-        <preco>25R$</preco>
+        <preco moeda="BRL">25&reais;</preco>
         <calorias>350 kcal</calorias>
         <tempo>30 min</tempo>
     </prato>
