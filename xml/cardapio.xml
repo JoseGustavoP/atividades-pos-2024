@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cardapio>
+    <prato id="L01">
+        <nome>Arroz com Feijao</nome> 
+        <descrição>Muito arroz e feijao</descrição> 
+        <ingredientes>Arroz e feijao</ingredientes>
+        <preco>10R$</preco> 
+        <calorias>300 kcal</calorias> 
+        <tempo>10 min</tempo>
+    </prato>
+
+    <prato id="L02">
+        <nome>Frango Grelhado</nome>
+        <descrição>Peito de frango grelhado com temperos naturais.</descrição>
+        <ingredientes>Peito de frango, sal, pimenta, azeite</ingredientes>
+        <preco>15R$</preco>
+        <calorias>250 kcal</calorias>
+        <tempo>15 min</tempo>
+    </prato>
+    
+    <prato id="L03">
+        <nome>Salada Caesar</nome>
+        <descrição>Uma mistura refrescante de alface, croutons, queijo parmesão e molho Caesar.</descrição>
+        <ingredientes>Alface, croutons, queijo parmesão, molho Caesar</ingredientes>
+        <preco>12R$</preco>
+        <calorias>180 kcal</calorias>
+        <tempo>10 min</tempo>
+    </prato>
+    
+    <prato id="L04">
+        <nome>Salmão Assado</nome>
+        <descrição>Delicioso filé de salmão assado no forno com um toque de limão.</descrição>
+        <ingredientes>Filé de salmão, limão, sal, pimenta</ingredientes>
+        <preco>20R$</preco>
+        <calorias>300 kcal</calorias>
+        <tempo>20 min</tempo>
+    </prato>
+
+    <prato id="L05">
+        <nome>Pizza Margherita</nome>
+        <descrição>Uma clássica pizza italiana com molho de tomate, mozzarella fresca e manjericão.</descrição>
+        <ingredientes>Massa de pizza, molho de tomate, queijo mozzarella, manjericão</ingredientes>
+        <preco>25R$</preco>
+        <calorias>350 kcal</calorias>
+        <tempo>30 min</tempo>
+    </prato>
+
+</cardapio>
