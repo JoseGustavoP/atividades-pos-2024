@@ -9,4 +9,3 @@
 <!ELEMENT calorias (#PCDATA)>
 <!ELEMENT tempo (#PCDATA)>
 
-<!ENTITY reais "R$">
