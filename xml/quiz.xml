@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE quiz [
+    <!ELEMENT quiz (disciplina, professor, turma, data, questões)>
+    <!ATTLIST quiz versao CDATA #REQUIRED>
+    <!ELEMENT disciplina (#PCDATA)>
+    <!ELEMENT professor (nome, matrícula?)>
+        <!ELEMENT nome (#PCDATA)>
+        <!ELEMENT matrícula (#PCDATA)>
+    <!ELEMENT turma (#PCDATA)>
+    <!ELEMENT data (#PCDATA)>
+    <!ELEMENT questões (questão+)>
+        <!ELEMENT questão (enunciado, pontuação, alternativas)>
+            <!ELEMENT enunciado (#PCDATA)>
+            <!ELEMENT pontuação (#PCDATA)>
+            <!ELEMENT alternativas (alternativa+)>
+                <!ELEMENT alternativa (#PCDATA)>
+                    <!ATTLIST alternativa correta (sim|nao) #REQUIRED>
+]>
+
+<quiz versao="1.0">
+    <disciplina>Matemática</disciplina>
+    <professor>
+        <nome>Maria Oliveira</nome>
+        <matrícula>12345</matrícula>
+    </professor>
+    <turma>3A</turma>
+    <data>2024-07-17</data>
+    <questões>
+        <questão>
+            <enunciado>Qual é a soma de 2 + 2?</enunciado>
+            <pontuação>1</pontuação>
+            <alternativas>
+                <alternativa correta="nao">3</alternativa>
+                <alternativa correta="sim">4</alternativa>
+                <alternativa correta="nao">5</alternativa>
+                <alternativa correta="nao">6</alternativa>
+            </alternativas>
+        </questão>
+        <questão>
+            <enunciado>Qual é a capital da França?</enunciado>
+            <pontuação>1</pontuação>
+            <alternativas>
+                <alternativa correta="nao">Londres</alternativa>
+                <alternativa correta="sim">Paris</alternativa>
+                <alternativa correta="nao">Berlim</alternativa>
+                <alternativa correta="nao">Madri</alternativa>
+            </alternativas>
+        </questão>
+        <questão>
+            <enunciado>Quem escreveu 'Dom Quixote'?</enunciado>
+            <pontuação>1</pontuação>
+            <alternativas>
+                <alternativa correta="sim">Miguel de Cervantes</alternativa>
+                <alternativa correta="nao">William Shakespeare</alternativa>
+                <alternativa correta="nao">J.K. Rowling</alternativa>
+                <alternativa correta="nao">Gabriel García Márquez</alternativa>
+            </alternativas>
+        </questão>
+        <questão>
+            <enunciado>Qual é a fórmula química da água?</enunciado>
+            <pontuação>1</pontuação>
+            <alternativas>
+                <alternativa correta="sim">H2O</alternativa>
+                <alternativa correta="nao">CO2</alternativa>
+                <alternativa correta="nao">O2</alternativa>
+                <alternativa correta="nao">N2</alternativa>
+            </alternativas>
+        </questão>
+        <questão>
+            <enunciado>Qual é a maior planeta do sistema solar?</enunciado>
+            <pontuação>1</pontuação>
+            <alternativas>
+                <alternativa correta="nao">Terra</alternativa>
+                <alternativa correta="nao">Marte</alternativa>
+                <alternativa correta="sim">Júpiter</alternativa>
+                <alternativa correta="nao">Saturno</alternativa>
+            </alternativas>
+        </questão>
+    </questões>
+</quiz>
