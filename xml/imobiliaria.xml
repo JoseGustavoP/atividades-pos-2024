@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE imobiliaria [
+    <!ELEMENT imobiliaria (imovel+)>
+    <!ELEMENT imovel (descricao, proprietario, endereco, caracteristicas, valor)>
+    <!ELEMENT descricao (#PCDATA)>
+    <!ELEMENT proprietario (nome, (email|telefone)+)>
+    <!ELEMENT nome (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT telefone (#PCDATA)>
+    <!ELEMENT endereco (rua, bairro, cidade, numero?)>
+    <!ELEMENT rua (#PCDATA)>
+    <!ELEMENT bairro (#PCDATA)>
+    <!ELEMENT cidade (#PCDATA)>
+    <!ELEMENT numero (#PCDATA)>
+    <!ELEMENT caracteristicas (tamanho, numerodequartos, numerodebanheiros)>
+    <!ELEMENT tamanho (#PCDATA)>
+    <!ELEMENT numerodequartos (#PCDATA)>
+    <!ELEMENT numerodebanheiros (#PCDATA)>
+    <!ELEMENT valor (#PCDATA)>
+]>
+
+<imobiliaria>
+    <imovel>
+        <descricao>Apartamento moderno no centro</descricao>
+        <proprietario>
+            <nome>Lucas Martins</nome>
+            <email>lucas.martins@gmail.com</email>
+            <telefone>9999-1111</telefone>
+            <telefone>9999-2222</telefone>
+        </proprietario>
+        <endereco>
+            <rua>Rua Central</rua>
+            <bairro>Centro</bairro>
+            <cidade>São Paulo</cidade>
+            <numero>500</numero>
+        </endereco>
+        <caracteristicas>
+            <tamanho>85m²</tamanho>
+            <numerodequartos>2</numerodequartos>
+            <numerodebanheiros>1</numerodebanheiros>
+        </caracteristicas>
+        <valor>R$ 750.000,00</valor>
+    </imovel>
+    <imovel>
+        <descricao>Casa de campo espaçosa</descricao>
+        <proprietario>
+            <nome>Ana Carvalho</nome>
+            <telefone>8888-3333</telefone>
+        </proprietario>
+        <endereco>
+            <rua>Estrada da Serra</rua>
+            <bairro>Zona Rural</bairro>
+            <cidade>Campos do Jordão</cidade>
+        </endereco>
+        <caracteristicas>
+            <tamanho>350m²</tamanho>
+            <numerodequartos>4</numerodequartos>
+            <numerodebanheiros>3</numerodebanheiros>
+        </caracteristicas>
+        <valor>R$ 1.500.000,00</valor>
+    </imovel>
+    <imovel>
+        <descricao>Chácara com lago</descricao>
+        <proprietario>
+            <nome>Roberto Lima</nome>
+            <email>roberto.lima@gmail.com</email>
+        </proprietario>
+        <endereco>
+            <rua>Estrada do Lago</rua>
+            <bairro>Zona Rural</bairro>
+            <cidade>Campinas</cidade>
+            <numero>1200</numero>
+        </endereco>
+        <caracteristicas>
+            <tamanho>4500m²</tamanho>
+            <numerodequartos>5</numerodequartos>
+            <numerodebanheiros>4</numerodebanheiros>
+        </caracteristicas>
+        <valor>R$ 3.200.000,00</valor>
+    </imovel>
+    <imovel>
+        <descricao>Studio aconchegante</descricao>
+        <proprietario>
+            <nome>Mariana Freitas</nome>
+            <telefone>7777-4444</telefone>
+        </proprietario>
+        <endereco>
+            <rua>Rua da Paz</rua>
+            <bairro>Centro</bairro>
+            <cidade>Florianópolis</cidade>
+        </endereco>
+        <caracteristicas>
+            <tamanho>40m²</tamanho>
+            <numerodequartos>1</numerodequartos>
+            <numerodebanheiros>1</numerodebanheiros>
+        </caracteristicas>
+        <valor>R$ 250.000,00</valor>
+    </imovel>
+    <imovel>
+        <descricao>Sobrado em bairro nobre</descricao>
+        <proprietario>
+            <nome>Carla Souza</nome>
+            <email>carla.souza@gmail.com</email>
+        </proprietario>
+        <endereco>
+            <rua>Rua das Acácias</rua>
+            <bairro>Jardins</bairro>
+            <cidade>Curitiba</cidade>
+            <numero>15</numero>
+        </endereco>
+        <caracteristicas>
+            <tamanho>210m²</tamanho>
+            <numerodequartos>3</numerodequartos>
+            <numerodebanheiros>3</numerodebanheiros>
+        </caracteristicas>
+        <valor>R$ 1.300.000,00</valor>
+    </imovel>
+</imobiliaria>
