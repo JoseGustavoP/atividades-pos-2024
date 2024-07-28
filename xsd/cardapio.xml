@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cardapio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cardapio.xsd">
+    <prato id="1">
+        <nome>Arroz com Feijao</nome>
+        <descricao>Muito arroz e feijao</descricao>
+        <ingredientes>
+            <ingrediente>Arroz</ingrediente>
+            <ingrediente>Feijao</ingrediente>
+        </ingredientes>
+        <preco moeda="BRL">10.00</preco>
+        <calorias>300</calorias>
+        <tempoPreparo>10 min</tempoPreparo>
+    </prato>
+
+    <prato id="2">
+        <nome>Frango Grelhado</nome>
+        <descricao>Peito de frango grelhado com temperos naturais.</descricao>
+        <ingredientes>
+            <ingrediente>Peito de frango</ingrediente>
+            <ingrediente>Sal</ingrediente>
+            <ingrediente>Pimenta</ingrediente>
+            <ingrediente>Azeite</ingrediente>
+        </ingredientes>
+        <preco moeda="BRL">15.00</preco>
+        <calorias>250</calorias>
+        <tempoPreparo>15 min</tempoPreparo>
+    </prato>
+
+    <prato id="3">
+        <nome>Salada Caesar</nome>
+        <descricao>Uma mistura refrescante de alface, croutons, queijo parmesão e molho Caesar.</descricao>
+        <ingredientes>
+            <ingrediente>Alface</ingrediente>
+            <ingrediente>Croutons</ingrediente>
+            <ingrediente>Queijo parmesão</ingrediente>
+            <ingrediente>Molho Caesar</ingrediente>
+        </ingredientes>
+        <preco moeda="BRL">12.00</preco>
+        <calorias>180</calorias>
+        <tempoPreparo>10 min</tempoPreparo>
+    </prato>
+
+    <prato id="4">
+        <nome>Salmão Assado</nome>
+        <descricao>Delicioso filé de salmão assado no forno com um toque de limão.</descricao>
+        <ingredientes>
+            <ingrediente>Filé de salmão</ingrediente>
+            <ingrediente>Limão</ingrediente>
+            <ingrediente>Sal</ingrediente>
+            <ingrediente>Pimenta</ingrediente>
+        </ingredientes>
+        <preco moeda="BRL">20.00</preco>
+        <calorias>300</calorias>
+        <tempoPreparo>20 min</tempoPreparo>
+    </prato>
+
+    <prato id="5">
+        <nome>Pizza Margherita</nome>
+        <descricao>Uma clássica pizza italiana com molho de tomate, mozzarella fresca e manjericão.</descricao>
+        <ingredientes>
+            <ingrediente>Massa de pizza</ingrediente>
+            <ingrediente>Molho de tomate</ingrediente>
+            <ingrediente>Queijo mozzarella</ingrediente>
+            <ingrediente>Manjericão</ingrediente>
+        </ingredientes>
+        <preco moeda="BRL">25.00</preco>
+        <calorias>350</calorias>
+        <tempoPreparo>30 min</tempoPreparo>
+    </prato>
+</cardapio>
