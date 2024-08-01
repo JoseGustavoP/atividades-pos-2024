@@ -1,0 +1,77 @@
+{
+    "cardapio": {
+      "prato": [
+        {
+          "id": "L01",
+          "nome": "Arroz com Feijao",
+          "descricao": "Muito arroz e feijao",
+          "ingredientes": {
+            "ingrediente": ["Arroz", "Feijao"]
+          },
+          "preco": {
+            "moeda": "BRL",
+            "valor": "10&reais;"
+          },
+          "calorias": "300 kcal",
+          "tempo": "10 min"
+        },
+        {
+          "id": "L02",
+          "nome": "Frango Grelhado",
+          "descricao": "Peito de frango grelhado com temperos naturais.",
+          "ingredientes": {
+            "ingrediente": ["Peito de frango", "Sal", "Pimenta", "Azeite"]
+          },
+          "preco": {
+            "moeda": "BRL",
+            "valor": "15&reais;"
+          },
+          "calorias": "250 kcal",
+          "tempo": "15 min"
+        },
+        {
+          "id": "L03",
+          "nome": "Salada Caesar",
+          "descricao": "Uma mistura refrescante de alface, croutons, queijo parmesão e molho Caesar.",
+          "ingredientes": {
+            "ingrediente": ["Alface", "Croutons", "Queijo parmesão", "Molho Caesar"]
+          },
+          "preco": {
+            "moeda": "BRL",
+            "valor": "12&reais;"
+          },
+          "calorias": "180 kcal",
+          "tempo": "10 min"
+        },
+        {
+          "id": "L04",
+          "nome": "Salmão Assado",
+          "descricao": "Delicioso filé de salmão assado no forno com um toque de limão.",
+          "ingredientes": {
+            "ingrediente": ["Filé de salmão", "Limão", "Sal", "Pimenta"]
+          },
+          "preco": {
+            "moeda": "BRL",
+            "valor": "20&reais;"
+          },
+          "calorias": "300 kcal",
+          "tempo": "20 min"
+        },
+        {
+          "id": "L05",
+          "nome": "Pizza Margherita",
+          "descricao": "Uma clássica pizza italiana com molho de tomate, mozzarella fresca e manjericão.",
+          "ingredientes": {
+            "ingrediente": ["Massa de pizza", "Molho de tomate", "Queijo mozzarella", "Manjericão"]
+          },
+          "preco": {
+            "moeda": "BRL",
+            "valor": "25&reais;"
+          },
+          "calorias": "350 kcal",
+          "tempo": "30 min"
+        }
+      ]
+    }
+  }
+  
