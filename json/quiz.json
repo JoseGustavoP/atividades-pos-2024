@@ -1,0 +1,125 @@
+{
+    "quiz": {
+      "versao": "1.0",
+      "disciplina": "Matemática",
+      "professor": {
+        "nome": "Maria Oliveira",
+        "matrícula": "12345"
+      },
+      "turma": "3A",
+      "data": "2024-07-17",
+      "questões": [
+        {
+          "enunciado": "Qual é a soma de 2 + 2?",
+          "pontuação": "1",
+          "alternativas": [
+            {
+              "correta": "nao",
+              "texto": "3"
+            },
+            {
+              "correta": "sim",
+              "texto": "4"
+            },
+            {
+              "correta": "nao",
+              "texto": "5"
+            },
+            {
+              "correta": "nao",
+              "texto": "6"
+            }
+          ]
+        },
+        {
+          "enunciado": "Qual é a capital da França?",
+          "pontuação": "1",
+          "alternativas": [
+            {
+              "correta": "nao",
+              "texto": "Londres"
+            },
+            {
+              "correta": "sim",
+              "texto": "Paris"
+            },
+            {
+              "correta": "nao",
+              "texto": "Berlim"
+            },
+            {
+              "correta": "nao",
+              "texto": "Madri"
+            }
+          ]
+        },
+        {
+          "enunciado": "Quem escreveu 'Dom Quixote'?",
+          "pontuação": "1",
+          "alternativas": [
+            {
+              "correta": "sim",
+              "texto": "Miguel de Cervantes"
+            },
+            {
+              "correta": "nao",
+              "texto": "William Shakespeare"
+            },
+            {
+              "correta": "nao",
+              "texto": "J.K. Rowling"
+            },
+            {
+              "correta": "nao",
+              "texto": "Gabriel García Márquez"
+            }
+          ]
+        },
+        {
+          "enunciado": "Qual é a fórmula química da água?",
+          "pontuação": "1",
+          "alternativas": [
+            {
+              "correta": "sim",
+              "texto": "H2O"
+            },
+            {
+              "correta": "nao",
+              "texto": "CO2"
+            },
+            {
+              "correta": "nao",
+              "texto": "O2"
+            },
+            {
+              "correta": "nao",
+              "texto": "N2"
+            }
+          ]
+        },
+        {
+          "enunciado": "Qual é o maior planeta do sistema solar?",
+          "pontuação": "1",
+          "alternativas": [
+            {
+              "correta": "nao",
+              "texto": "Terra"
+            },
+            {
+              "correta": "nao",
+              "texto": "Marte"
+            },
+            {
+              "correta": "sim",
+              "texto": "Júpiter"
+            },
+            {
+              "correta": "nao",
+              "texto": "Saturno"
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

@@ -1,0 +1,101 @@
+{
+    "imobiliaria": {
+      "imovel": [
+        {
+          "descricao": "Apartamento moderno no centro",
+          "proprietario": {
+            "nome": "Lucas Martins",
+            "email": ["lucas.martins@gmail.com"],
+            "telefone": ["9999-1111", "9999-2222"]
+          },
+          "endereco": {
+            "rua": "Rua Central",
+            "bairro": "Centro",
+            "cidade": "São Paulo",
+            "numero": "500"
+          },
+          "caracteristicas": {
+            "tamanho": "85m²",
+            "numerodequartos": "2",
+            "numerodebanheiros": "1"
+          },
+          "valor": "R$ 750.000,00"
+        },
+        {
+          "descricao": "Casa de campo espaçosa",
+          "proprietario": {
+            "nome": "Ana Carvalho",
+            "telefone": ["8888-3333"]
+          },
+          "endereco": {
+            "rua": "Estrada da Serra",
+            "bairro": "Zona Rural",
+            "cidade": "Campos do Jordão"
+          },
+          "caracteristicas": {
+            "tamanho": "350m²",
+            "numerodequartos": "4",
+            "numerodebanheiros": "3"
+          },
+          "valor": "R$ 1.500.000,00"
+        },
+        {
+          "descricao": "Chácara com lago",
+          "proprietario": {
+            "nome": "Roberto Lima",
+            "email": ["roberto.lima@gmail.com"]
+          },
+          "endereco": {
+            "rua": "Estrada do Lago",
+            "bairro": "Zona Rural",
+            "cidade": "Campinas",
+            "numero": "1200"
+          },
+          "caracteristicas": {
+            "tamanho": "4500m²",
+            "numerodequartos": "5",
+            "numerodebanheiros": "4"
+          },
+          "valor": "R$ 3.200.000,00"
+        },
+        {
+          "descricao": "Studio aconchegante",
+          "proprietario": {
+            "nome": "Mariana Freitas",
+            "telefone": ["7777-4444"]
+          },
+          "endereco": {
+            "rua": "Rua da Paz",
+            "bairro": "Centro",
+            "cidade": "Florianópolis"
+          },
+          "caracteristicas": {
+            "tamanho": "40m²",
+            "numerodequartos": "1",
+            "numerodebanheiros": "1"
+          },
+          "valor": "R$ 250.000,00"
+        },
+        {
+          "descricao": "Sobrado em bairro nobre",
+          "proprietario": {
+            "nome": "Carla Souza",
+            "email": ["carla.souza@gmail.com"]
+          },
+          "endereco": {
+            "rua": "Rua das Acácias",
+            "bairro": "Jardins",
+            "cidade": "Curitiba",
+            "numero": "15"
+          },
+          "caracteristicas": {
+            "tamanho": "210m²",
+            "numerodequartos": "3",
+            "numerodebanheiros": "3"
+          },
+          "valor": "R$ 1.300.000,00"
+        }
+      ]
+    }
+  }
+  
