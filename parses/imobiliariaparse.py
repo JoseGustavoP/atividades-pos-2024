@@ -12,7 +12,7 @@ def xml_to_dict(element):
     data_dict = {}
     if len(element):
         for child in element:
-            if len(child) > 0:  # Se o nó tem filhos
+            if len(child) > 0:  
                 if child.tag not in data_dict:
                     data_dict[child.tag] = []
                 data_dict[child.tag].append(xml_to_dict(child))
