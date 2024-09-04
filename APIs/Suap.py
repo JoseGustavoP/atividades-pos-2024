@@ -67,15 +67,15 @@ def format_boletim(boletim_data):
             disciplina.get("nota_etapa_2", "N/A"),
             disciplina.get("nota_etapa_3", "N/A"),
             disciplina.get("nota_etapa_4", "N/A"),
-            disciplina.get("media_final", "N/A")
+            disciplina.get("media_disciplina", "N/A")
         ]
         tabela.append(linha)
 
     print(tabulate(tabela, headers=["Disciplina", "Nota 1", "Nota 2", "Nota 3", "Nota 4", "Média Final"], tablefmt="pretty"))
 
 # Testar o endpoint de boletim
-ano_letivo = 2024  # Substitua pelo ano letivo desejado
-periodo_letivo = 1  # Substitua pelo período letivo desejado
+ano_letivo = int(input("Digite o Ano que Deseja Ver: ")) 
+periodo_letivo = 1
 
 boletim_data = get_boletim(ano_letivo, periodo_letivo)
 if boletim_data:
