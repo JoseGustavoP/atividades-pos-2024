@@ -7,8 +7,83 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Estilização do Carrossel */
+        #marcas-carousel {
+            position: relative;
+        }
+
+        .carousel-item {
+            text-align: center;
+        }
+
+        .carousel-item img {
+            max-height: 150px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .carousel-item img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilização dos Botões de Navegação */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .carousel-control-prev-icon:hover,
+        .carousel-control-next-icon:hover {
+            background-color: #0d6efd;
+            transform: scale(1.2);
+        }
+
+        /* Ajuste das Posições dos Botões */
+        .carousel-control-prev {
+            left: 0;
+        }
+
+        .carousel-control-next {
+            right: 0;
+        }
+
+        /* Estilização do Modal */
+        .modal-dialog {
+            max-width: 800px;
+        }
+
         .nested-accordion .accordion-body {
             padding-left: 1.5rem;
+        }
+
+        /* Estilização para Dispositivos Móveis */
+        @media (max-width: 576px) {
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 10%;
+            }
+
+            .carousel-item img {
+                max-height: 100px;
+            }
         }
     </style>
 </head>
@@ -16,13 +91,40 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Consulta Tabela FIPE</h1>
-        
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button id="load-marcas-btn" class="btn btn-primary btn-lg">Carregar Marcas</button>
+        <!-- Carousel para a lista de marcas -->
+        <div id="marcas-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                <!-- Itens do carrossel serão inseridos dinamicamente aqui -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#marcas-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#marcas-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
         </div>
+    </div>
 
-        <!-- Accordion para a lista de marcas -->
-        <div class="accordion mt-4" id="marcas-accordion"></div>
+    <!-- Modal para exibir detalhes da marca -->
+    <div class="modal fade" id="marcaModal" tabindex="-1" aria-labelledby="marcaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="marcaModalLabel" class="modal-title">Detalhes da Marca</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content-body">
+                        <div class="text-center">Carregando modelos...</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap 5 JS and Popper.js -->
@@ -40,35 +142,53 @@
                 if (!response.ok) throw new Error('Erro ao buscar as marcas.');
                 const marcas = await response.json();
 
-                const marcasAccordion = document.getElementById('marcas-accordion');
-                marcasAccordion.innerHTML = ''; // Limpa o accordion anterior
+                const carouselInner = document.getElementById('carousel-inner');
+                carouselInner.innerHTML = ''; // Limpa o carrossel anterior
 
-                // Itera sobre as marcas e cria os itens do accordion
-                marcas.forEach((marca, index) => {
-                    const accordionItem = document.createElement('div');
-                    accordionItem.className = 'accordion-item';
+                if (marcas.length === 0) {
+                    carouselInner.innerHTML = '<div class="carousel-item active"><div class="text-center">Nenhuma marca encontrada.</div></div>';
+                    return;
+                }
 
-                    accordionItem.innerHTML = `
-                        <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
-                                ${marca.nome}
-                            </button>
-                        </h2>
-                        <div id="collapse-${index}" class="accordion-collapse collapse" aria-labelledby="heading-${index}" data-bs-parent="#marcas-accordion">
-                            <div class="accordion-body" id="marca-details-${index}">
-                                <div class="text-center">Carregando modelos...</div>
+                // Define quantas marcas por slide do carrossel
+                const marcasPorSlide = 4;
+                for (let i = 0; i < marcas.length; i += marcasPorSlide) {
+                    const marcasSlide = marcas.slice(i, i + marcasPorSlide);
+                    const isActive = i === 0 ? 'active' : '';
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = `carousel-item ${isActive}`;
+
+                    let carouselContent = '<div class="d-flex justify-content-around">';
+                    marcasSlide.forEach(marca => {
+                        // Placeholder para a imagem da marca. Você pode substituir por imagens reais se disponíveis.
+                        carouselContent += `
+                            <div>
+                                <img src="img.jpg?text=${encodeURIComponent(marca.nome)}" alt="${marca.nome}" data-codigo="${marca.codigo}" class="marca-img">
+                                <p class="mt-2">${marca.nome}</p>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    });
+                    carouselContent += '</div>';
 
-                    marcasAccordion.appendChild(accordionItem);
+                    carouselItem.innerHTML = carouselContent;
+                    carouselInner.appendChild(carouselItem);
+                }
 
-                    // Adiciona o evento de clique para carregar os modelos da marca
-                    accordionItem.querySelector('.accordion-button').addEventListener('click', () => {
-                        const detailsElement = document.getElementById(`marca-details-${index}`);
-                        if (!detailsElement.classList.contains('loaded')) {
-                            loadModelos(marca.codigo, index);
-                        }
+                // Ativar o carrossel caso ainda não esteja ativo
+                const marcasCarouselElement = document.getElementById('marcas-carousel');
+                if (!bootstrap.Carousel.getInstance(marcasCarouselElement)) {
+                    new bootstrap.Carousel(marcasCarouselElement, {
+                        interval: 5000,
+                        ride: 'carousel'
+                    });
+                }
+
+                // Adicionar eventos de clique nas imagens das marcas
+                document.querySelectorAll('.marca-img').forEach(img => {
+                    img.addEventListener('click', () => {
+                        const codigoMarca = img.getAttribute('data-codigo');
+                        const nomeMarca = img.nextElementSibling.textContent;
+                        openMarcaModal(codigoMarca, nomeMarca);
                     });
                 });
 
@@ -78,8 +198,20 @@
             }
         }
 
-        // Função para carregar os modelos de uma marca específica
-        async function loadModelos(codigoMarca, indexMarca) {
+        // Função para abrir o modal com detalhes da marca
+        function openMarcaModal(codigoMarca, nomeMarca) {
+            const marcaModal = new bootstrap.Modal(document.getElementById('marcaModal'));
+            document.getElementById('marcaModalLabel').textContent = `Detalhes da Marca: ${nomeMarca}`;
+            const modalContentBody = document.getElementById('modal-content-body');
+            modalContentBody.innerHTML = '<div class="text-center">Carregando modelos...</div>';
+            marcaModal.show();
+
+            // Carregar modelos da marca
+            loadModelos(codigoMarca);
+        }
+
+        // Função para carregar os modelos de uma marca específica dentro do modal
+        async function loadModelos(codigoMarca) {
             try {
                 const url = `${FIPE_API_BASE_URL}/carros/marcas/${codigoMarca}/modelos`;
                 const response = await fetch(url);
@@ -87,31 +219,31 @@
                 const modelosData = await response.json();
                 const modelos = modelosData.modelos;
 
-                const marcaDetails = document.getElementById(`marca-details-${indexMarca}`);
-                marcaDetails.innerHTML = ''; // Limpa o conteúdo anterior
+                const modalContentBody = document.getElementById('modal-content-body');
+                modalContentBody.innerHTML = ''; // Limpa o conteúdo anterior
 
                 if (modelos.length === 0) {
-                    marcaDetails.innerHTML = '<div class="text-center">Nenhum modelo encontrado.</div>';
+                    modalContentBody.innerHTML = '<div class="text-center">Nenhum modelo encontrado.</div>';
                     return;
                 }
 
-                // Cria um accordion para os modelos dentro da marca
+                // Cria um accordion para os modelos dentro do modal
                 const modelosAccordion = document.createElement('div');
-                modelosAccordion.className = 'accordion nested-accordion';
-                modelosAccordion.id = `modelos-accordion-${indexMarca}`;
+                modelosAccordion.className = 'accordion';
+                modelosAccordion.id = 'modelos-accordion';
 
                 modelos.forEach((modelo, indexModelo) => {
                     const modeloItem = document.createElement('div');
                     modeloItem.className = 'accordion-item';
 
                     modeloItem.innerHTML = `
-                        <h2 class="accordion-header" id="modelo-heading-${indexMarca}-${indexModelo}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#modelo-collapse-${indexMarca}-${indexModelo}" aria-expanded="false" aria-controls="modelo-collapse-${indexMarca}-${indexModelo}">
+                        <h2 class="accordion-header" id="modelo-heading-${indexModelo}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#modelo-collapse-${indexModelo}" aria-expanded="false" aria-controls="modelo-collapse-${indexModelo}">
                                 ${modelo.nome}
                             </button>
                         </h2>
-                        <div id="modelo-collapse-${indexMarca}-${indexModelo}" class="accordion-collapse collapse" aria-labelledby="modelo-heading-${indexMarca}-${indexModelo}" data-bs-parent="#modelos-accordion-${indexMarca}">
-                            <div class="accordion-body" id="modelo-details-${indexMarca}-${indexModelo}">
+                        <div id="modelo-collapse-${indexModelo}" class="accordion-collapse collapse" aria-labelledby="modelo-heading-${indexModelo}" data-bs-parent="#modelos-accordion">
+                            <div class="accordion-body" id="modelo-details-${indexModelo}">
                                 <div class="text-center">Carregando anos...</div>
                             </div>
                         </div>
@@ -121,31 +253,31 @@
 
                     // Adiciona o evento de clique para carregar os anos do modelo
                     modeloItem.querySelector('.accordion-button').addEventListener('click', () => {
-                        const modeloDetails = document.getElementById(`modelo-details-${indexMarca}-${indexModelo}`);
+                        const modeloDetails = document.getElementById(`modelo-details-${indexModelo}`);
                         if (!modeloDetails.classList.contains('loaded')) {
-                            loadAnos(codigoMarca, modelo.codigo, indexMarca, indexModelo);
+                            loadAnos(codigoMarca, modelo.codigo, indexModelo);
                         }
                     });
                 });
 
-                marcaDetails.appendChild(modelosAccordion);
-                marcaDetails.classList.add('loaded'); // Marca como carregado
+                modalContentBody.appendChild(modelosAccordion);
 
             } catch (error) {
                 console.error('Erro ao buscar os modelos:', error);
-                alert('Não foi possível carregar os modelos.');
+                const modalContentBody = document.getElementById('modal-content-body');
+                modalContentBody.innerHTML = '<div class="text-center">Não foi possível carregar os modelos.</div>';
             }
         }
 
-        // Função para carregar os anos de um modelo específico
-        async function loadAnos(codigoMarca, codigoModelo, indexMarca, indexModelo) {
+        // Função para carregar os anos de um modelo específico dentro do modal
+        async function loadAnos(codigoMarca, codigoModelo, indexModelo) {
             try {
                 const url = `${FIPE_API_BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos`;
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Erro ao buscar os anos.');
                 const anos = await response.json();
 
-                const modeloDetails = document.getElementById(`modelo-details-${indexMarca}-${indexModelo}`);
+                const modeloDetails = document.getElementById(`modelo-details-${indexModelo}`);
                 modeloDetails.innerHTML = ''; // Limpa o conteúdo anterior
 
                 if (anos.length === 0) {
@@ -156,20 +288,20 @@
                 // Cria um accordion para os anos dentro do modelo
                 const anosAccordion = document.createElement('div');
                 anosAccordion.className = 'accordion nested-accordion';
-                anosAccordion.id = `anos-accordion-${indexMarca}-${indexModelo}`;
+                anosAccordion.id = `anos-accordion-${indexModelo}`;
 
                 anos.forEach((ano, indexAno) => {
                     const anoItem = document.createElement('div');
                     anoItem.className = 'accordion-item';
 
                     anoItem.innerHTML = `
-                        <h2 class="accordion-header" id="ano-heading-${indexMarca}-${indexModelo}-${indexAno}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ano-collapse-${indexMarca}-${indexModelo}-${indexAno}" aria-expanded="false" aria-controls="ano-collapse-${indexMarca}-${indexModelo}-${indexAno}">
+                        <h2 class="accordion-header" id="ano-heading-${indexModelo}-${indexAno}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ano-collapse-${indexModelo}-${indexAno}" aria-expanded="false" aria-controls="ano-collapse-${indexModelo}-${indexAno}">
                                 ${ano.nome}
                             </button>
                         </h2>
-                        <div id="ano-collapse-${indexMarca}-${indexModelo}-${indexAno}" class="accordion-collapse collapse" aria-labelledby="ano-heading-${indexMarca}-${indexModelo}-${indexAno}" data-bs-parent="#anos-accordion-${indexMarca}-${indexModelo}">
-                            <div class="accordion-body" id="ano-details-${indexMarca}-${indexModelo}-${indexAno}">
+                        <div id="ano-collapse-${indexModelo}-${indexAno}" class="accordion-collapse collapse" aria-labelledby="ano-heading-${indexModelo}-${indexAno}" data-bs-parent="#anos-accordion-${indexModelo}">
+                            <div class="accordion-body" id="ano-details-${indexModelo}-${indexAno}">
                                 <div class="text-center">Carregando valor...</div>
                             </div>
                         </div>
@@ -179,9 +311,9 @@
 
                     // Adiciona o evento de clique para carregar o valor do ano
                     anoItem.querySelector('.accordion-button').addEventListener('click', () => {
-                        const anoDetails = document.getElementById(`ano-details-${indexMarca}-${indexModelo}-${indexAno}`);
+                        const anoDetails = document.getElementById(`ano-details-${indexModelo}-${indexAno}`);
                         if (!anoDetails.classList.contains('loaded')) {
-                            loadValor(codigoMarca, codigoModelo, ano.codigo, indexMarca, indexModelo, indexAno);
+                            loadValor(codigoMarca, codigoModelo, ano.codigo, indexModelo, indexAno);
                         }
                     });
                 });
@@ -191,19 +323,20 @@
 
             } catch (error) {
                 console.error('Erro ao buscar os anos:', error);
-                alert('Não foi possível carregar os anos.');
+                const modeloDetails = document.getElementById(`modelo-details-${indexModelo}`);
+                modeloDetails.innerHTML = '<div class="text-center">Não foi possível carregar os anos.</div>';
             }
         }
 
-        // Função para carregar o valor de um veículo específico
-        async function loadValor(codigoMarca, codigoModelo, codigoAno, indexMarca, indexModelo, indexAno) {
+        // Função para carregar o valor de um veículo específico dentro do modal
+        async function loadValor(codigoMarca, codigoModelo, codigoAno, indexModelo, indexAno) {
             try {
                 const url = `${FIPE_API_BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos/${codigoAno}`;
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Erro ao buscar o valor do veículo.');
                 const valorData = await response.json();
 
-                const anoDetails = document.getElementById(`ano-details-${indexMarca}-${indexModelo}-${indexAno}`);
+                const anoDetails = document.getElementById(`ano-details-${indexModelo}-${indexAno}`);
                 anoDetails.innerHTML = `
                     <p><strong>Marca:</strong> ${valorData.Marca}</p>
                     <p><strong>Modelo:</strong> ${valorData.Modelo}</p>
@@ -217,12 +350,13 @@
 
             } catch (error) {
                 console.error('Erro ao buscar o valor do veículo:', error);
-                alert('Não foi possível carregar o valor do veículo.');
+                const anoDetails = document.getElementById(`ano-details-${indexModelo}-${indexAno}`);
+                anoDetails.innerHTML = '<div class="text-center">Não foi possível carregar o valor do veículo.</div>';
             }
         }
 
         // Adiciona o evento de clique no botão para carregar as marcas
-        document.getElementById('load-marcas-btn').addEventListener('click', loadMarcas);
+        document.addEventListener('DOMContentLoaded', loadMarcas);
     </script>
 
 </body>
