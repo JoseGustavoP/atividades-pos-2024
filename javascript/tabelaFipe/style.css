@@ -1,0 +1,79 @@
+        /* Estilização do Carrossel */
+        #marcas-carousel {
+          position: relative;
+        }
+
+        .carousel-item {
+          text-align: center;
+        }
+
+        .carousel-item img {
+          max-height: 150px;
+          object-fit: contain;
+          cursor: pointer;
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .carousel-item img:hover {
+          transform: scale(1.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilização dos Botões de Navegação */
+        .carousel-control-prev,
+        .carousel-control-next {
+          width: 5%;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+          background-color: #fff;
+          border-radius: 50%;
+          padding: 10px;
+          transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .carousel-control-prev-icon:hover,
+        .carousel-control-next-icon:hover {
+          background-color: #0d6efd;
+          transform: scale(1.2);
+        }
+
+        /* Ajuste das Posições dos Botões */
+        .carousel-control-prev {
+          left: 0;
+        }
+
+        .carousel-control-next {
+          right: 0;
+        }
+
+        /* Estilização do Modal */
+        .modal-dialog {
+          max-width: 800px;
+        }
+
+        .nested-accordion .accordion-body {
+          padding-left: 1.5rem;
+        }
+
+        /* Estilização para Dispositivos Móveis */
+        @media (max-width: 576px) {
+
+          .carousel-control-prev,
+          .carousel-control-next {
+            width: 10%;
+          }
+
+          .carousel-item img {
+            max-height: 100px;
+          }
+        }
