@@ -57,10 +57,11 @@ function openMarcaModal(codigoMarca, nomeMarca) {
     marcaModal.show();
 
     loadModelos(codigoMarca).then(modelosData => {
-        loadModelosAndDisplay(modelosData.modelos);
+        loadModelosAndDisplay(modelosData.modelos, codigoMarca);
     });
 }
-async function loadModelosAndDisplay(modelos) {
+
+async function loadModelosAndDisplay(modelos, codigoMarca) {
     const modalContentBody = document.getElementById('modal-content-body');
     modalContentBody.innerHTML = ''; // Limpa o conteúdo anterior
 
@@ -96,7 +97,7 @@ async function loadModelosAndDisplay(modelos) {
             const modeloDetails = document.getElementById(`modelo-details-${indexModelo}`);
             if (!modeloDetails.classList.contains('loaded')) {
                 try {
-                    const anos = await loadAnos(modelo.codigo);
+                    const anos = await loadAnos(codigoMarca, modelo.codigo);
                     loadAnosAndDisplay(anos, codigoMarca, modelo.codigo, indexModelo);
                 } catch (error) {
                     modeloDetails.innerHTML = `<div class="text-center text-danger">Erro ao carregar anos: ${error.message}</div>`;
@@ -116,7 +117,7 @@ function loadAnosAndDisplay(anos, codigoMarca, codigoModelo, indexModelo) {
         modeloDetails.innerHTML = '<div class="text-center">Nenhum ano encontrado.</div>';
         return;
     }
-
+    
     const anosAccordion = document.createElement('div');
     anosAccordion.className = 'accordion nested-accordion';
     anosAccordion.id = `anos-accordion-${indexModelo}`;
@@ -140,12 +141,35 @@ function loadAnosAndDisplay(anos, codigoMarca, codigoModelo, indexModelo) {
 
         anosAccordion.appendChild(anoItem);
 
-        anoItem.querySelector('.accordion-button').addEventListener('click', () => {
+        anoItem.querySelector('.accordion-button').addEventListener('click', async () => {
             const anoDetails = document.getElementById(`ano-details-${indexModelo}-${indexAno}`);
+
             if (!anoDetails.classList.contains('loaded')) {
-                loadValor(codigoMarca, codigoModelo, ano.codigo).then(valorData => {
-                    loadValorAndDisplay(valorData, indexModelo, indexAno);
-                });
+                try {
+                    const valorData = await loadValor(codigoMarca, codigoModelo, ano.codigo);
+
+                    // Depuração: verifica o conteúdo de valorData
+                    console.log('Retorno de loadValor:', valorData);
+
+                    if (valorData && valorData.Valor) {
+                        // Remove "R$", ponto e vírgula da string e converte para número
+                        const valorLimpo = parseFloat(valorData.Valor.replace('R$', '').replace('.', '').replace(',', '.').trim());
+
+                        if (!isNaN(valorLimpo)) {
+                            valorData.valor = valorLimpo; // Atualiza o valor com o valor numérico
+                            loadValorAndDisplay(valorData, indexModelo, indexAno);
+                        } else {
+                            anoDetails.innerHTML = '<div class="text-center text-danger">Valor FIPE inválido.</div>';
+                        }
+                    } else {
+                        anoDetails.innerHTML = '<div class="text-center text-danger">Valor FIPE indisponível.</div>';
+                    }
+
+                    anoDetails.classList.add('loaded');
+                } catch (error) {
+                    console.error('Erro ao carregar valor:', error);
+                    anoDetails.innerHTML = '<div class="text-center text-danger">Erro ao carregar o valor do veículo.</div>';
+                }
             }
         });
     });
@@ -157,9 +181,9 @@ function loadAnosAndDisplay(anos, codigoMarca, codigoModelo, indexModelo) {
 function loadValorAndDisplay(valorData, indexModelo, indexAno) {
     const anoDetails = document.getElementById(`ano-details-${indexModelo}-${indexAno}`);
     anoDetails.innerHTML = `
-        <p><strong>Marca:</strong> ${valorData.marca}</p>
-        <p><strong>Modelo:</strong> ${valorData.modelo}</p>
-        <p><strong>Ano:</strong> ${valorData.ano}</p>
+        <p><strong>Marca:</strong> ${valorData.Marca}</p>
+        <p><strong>Modelo:</strong> ${valorData.Modelo}</p>
+        <p><strong>Ano:</strong> ${valorData.AnoModelo}</p>
         <p><strong>Valor FIPE:</strong> R$ ${valorData.valor.toFixed(2)}</p>
     `;
     anoDetails.classList.add('loaded'); // Marca como carregado

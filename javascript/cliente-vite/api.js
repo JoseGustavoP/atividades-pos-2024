@@ -27,9 +27,13 @@ export async function loadModelos(codigoMarca) {
 
 export async function loadAnos(codigoMarca, codigoModelo) {
     try {
+        console.log(`Carregando anos para marca: ${codigoMarca}, modelo: ${codigoModelo}`);
         const url = `${FIPE_API_BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos`;
         const response = await fetch(url);
-        if (!response.ok) throw new Error('Erro ao buscar os anos.');
+        if (!response.ok) {
+            console.error(`Erro ao buscar os anos: Status ${response.status}`);
+            throw new Error('Erro ao buscar os anos.');
+        }
         return await response.json();
     } catch (error) {
         console.error('Erro ao buscar os anos:', error);
