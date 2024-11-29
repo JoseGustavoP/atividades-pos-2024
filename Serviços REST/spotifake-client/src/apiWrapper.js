@@ -26,29 +26,13 @@ class APIWrapper {
         }
     }
 
-    // Métodos para cada endpoint
+    // Métodos para Artistas
     getArtistas() {
         return this.fetchData("artistas/");
     }
 
-    getAlbuns() {
-        return this.fetchData("albuns/");
-    }
-
-    getMusicas() {
-        return this.fetchData("musicas/");
-    }
-
     createArtista(data) {
         return this.fetchData("artistas/", "POST", data);
-    }
-
-    createAlbum(data) {
-        return this.fetchData("albuns/", "POST", data);
-    }
-
-    createMusica(data) {
-        return this.fetchData("musicas/", "POST", data);
     }
 
     updateArtista(id, data) {
@@ -57,6 +41,40 @@ class APIWrapper {
 
     deleteArtista(id) {
         return this.fetchData(`artistas/${id}/`, "DELETE");
+    }
+
+    // Métodos para Albuns
+    getAlbuns() {
+        return this.fetchData("albuns/");
+    }
+
+    createAlbum(data) {
+        return this.fetchData("albuns/", "POST", data);
+    }
+
+    updateAlbum(id, data) {
+        return this.fetchData(`albuns/${id}/`, "PUT", data);
+    }
+
+    deleteAlbum(id) {
+        return this.fetchData(`albuns/${id}/`, "DELETE");
+    }
+
+    // Métodos para Musicas
+    getMusicas() {
+        return this.fetchData("musicas/");
+    }
+
+    createMusica(data) {
+        return this.fetchData("musicas/", "POST", data);
+    }
+
+    updateMusica(id, data) {
+        return this.fetchData(`musicas/${id}/`, "PUT", data);
+    }
+
+    deleteMusica(id) {
+        return this.fetchData(`musicas/${id}/`, "DELETE");
     }
 }
 

@@ -12,7 +12,7 @@ router.register(r'musicas', views.MusicaViewSet)
 # Wire up our API using automatic URL routing.
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
 
 urlpatterns += router.urls
